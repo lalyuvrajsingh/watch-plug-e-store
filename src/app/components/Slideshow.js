@@ -1,0 +1,58 @@
+'use client'
+import React from 'react';
+import { Fade } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
+
+
+
+
+
+function Slideshow() {
+
+
+
+const spanStyle = {
+  padding: '20px',
+  background: '#efefef',
+  color: '#000000'
+}
+
+const divStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundSize: 'cover',
+}
+
+const fadeImages = [
+    {
+      url: 'https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+      caption: 'First Slide'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80',
+      caption: 'Second Slide'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+      caption: 'Third Slide'
+    },
+  ];
+
+  return (
+    <div className="mx-5 mt-4 p-5 shadow-xl rounded-2xl">
+      <Fade>
+        {fadeImages.map((fadeImage, index) => (
+          <div key={index}>
+            <img className="h-[400px] w-full rounded-2xl " src={fadeImage.url} />
+          </div>
+        ))}
+      </Fade>
+    </div>
+  );
+}
+
+export default Slideshow;
+
+
+
