@@ -4,6 +4,7 @@ import Slideshow from "./components/Slideshow";
 import dynamic from 'next/dynamic';
 import CustomSlider from './components/CustomSlider';
 import Categories from "./components/Categories";
+import Products from "./components/Products";
 
 
 
@@ -40,6 +41,7 @@ export default function Home() {
       {/* <CustomSlider slides={slides} className="w-[400px]"/> */}
       <Slideshow/>
       <Categories categories={categories}/>
+      <Products/>
       <ProductGrid products={products} />
     </div>
   );

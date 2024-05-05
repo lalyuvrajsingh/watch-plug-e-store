@@ -10,7 +10,6 @@ import 'react-slideshow-image/dist/styles.css'
 function Slideshow() {
 
 
-
 const spanStyle = {
   padding: '20px',
   background: '#efefef',
