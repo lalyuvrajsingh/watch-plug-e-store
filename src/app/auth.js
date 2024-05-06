@@ -1,6 +1,7 @@
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { auth } from './firebaseConfig'; // Import from the Firebase config file you set up
+import { auth } from '../../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const withAdminAuth = (Component) => {
   return (props) => {
@@ -8,20 +9,22 @@ const withAdminAuth = (Component) => {
     const router = useRouter();
 
     useEffect(() => {
-      auth.onAuthStateChanged((user) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
           setUser(user);
         } else {
-          router.push('/login'); // Redirect to login if not authenticated
+          router.push('/login');
         }
       });
-    }, []);
+
+      return () => unsubscribe();
+    }, [router]);
 
     if (!user) {
-      return <div>Loading...</div>; // or a loading spinner
+      return <div>Loading...</div>;
     }
 
-    return <Component {...props} user={user} />;
+    return <Component {...props} />;
   };
 };
 

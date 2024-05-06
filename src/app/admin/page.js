@@ -2,7 +2,9 @@
 import { db } from '../../../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useState } from 'react';
+import withAdminAuth from '../auth';
+import { useEffect, useState } from 'react';
+import { getFirestore, getDocs, deleteDoc, doc } from 'firebase/firestore';
 
 // import nookies from 'nookies';
 
@@ -110,6 +112,28 @@ function AdminDashboard() {
     }
 };
 
+const [products, setProducts] = useState([]);
+
+useEffect(() => {
+    const fetchProducts = async () => {
+        const productsCollection = collection(db, 'products');
+        const productSnapshot = await getDocs(productsCollection);
+        const productList = productSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(productList);
+    };
+
+    fetchProducts();
+}, []);
+
+const handleDelete = async (id) => {
+    await deleteDoc(doc(db, 'products', id));
+    setProducts(products.filter(product => product.id !== id));  // Update UI
+};
+
+
+
+
+ 
 
   return (
     <div className="container flex flex-col items-center justify-center px-4">
@@ -135,8 +159,27 @@ function AdminDashboard() {
         <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" className="input border m-2 p-1 rounded-xl"></textarea>
         <button type="submit" className="bt border m-2 p-1 rounded-xl bg-green-400 shadow-lg">Add Product</button>
       </form>
+
+      <div className='mt-10'>
+      <h1 className="text-center text-gray-500 text-5xl mt-8 mb-8 font-bold">Products</h1>
+            {products.map(product => (
+              <div className="border h-fit hover:bg-gray-100 hover:shadow-2xl transition-shadow ease-in-out rounded-2xl m-1 my-3 shadow-xl p-4" key={product.id}>
+              <p className=" mb-5 text-gray-400">Added on: {product.date ? `${product.date}` : 'Date unknown'}</p>
+                <img src={product.coverImage} alt={product.name} className="h-40 w-full object-cover" />
+                  <div className="mt-2 text-center">
+                  <h3 className="text-md text-gray-500">{product.brand}</h3>
+                  <h3 className="text-lg font-semibold">{product.name}</h3>
+                  <p className="text-gray-700">{`$ ${product.sellingPrice}`}</p>
+                  <p className="text-gray-400 line-through ">{`$ ${product.mrp}`}</p>
+                  <button onClick={() => handleDelete(product.id)} className="bt border m-2 p-1 rounded-xl bg-green-400 shadow-lg">Delete</button>
+                  </div>
+              </div>
+            ))}
+        </div>
+
+
     </div>
   );
 }
 
-export default AdminDashboard;
+export default withAdminAuth(AdminDashboard);

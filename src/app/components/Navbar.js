@@ -46,10 +46,10 @@ export default function Navbar(){
 
           
          
-          <div className="hidden md:flex items-center space-x-3 ">
+          {/* <div className="hidden md:flex items-center space-x-3 ">
             <a href="" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-100 transition duration-300">Log In</a>
             <a href="" className="py-2 px-2 font-medium text-black  rounded transition duration-300">Sign Up</a>
-          </div>
+          </div> */}
           
           <div className="md:hidden flex items-center">
             <button className="outline-none mobile-menu-button">
