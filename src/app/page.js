@@ -42,7 +42,7 @@ export default function Home() {
       <Slideshow/>
       <Categories categories={categories}/>
       <Products/>
-      <ProductGrid products={products} />
+      {/* <ProductGrid products={products} /> */}
     </div>
   );
 }
