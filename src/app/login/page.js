@@ -26,7 +26,7 @@ function LoginPage() {
     <form onSubmit={handleLogin} className='border lg:w-[400px] m-3 p-2 rounded-xl shadow-xl flex flex-col'>
       <input type="email" name="email" placeholder='Email' required className='border m-3 p-2 rounded-xl' />
       <input type="password" name="password" placeholder='Password' required className='border m-3 p-2 rounded-xl' />
-      <button type="submit" className='border m-3 p-2 rounded-xl bg-green-400'>Login</button>
+      <button type="submit" className='border m-3 p-2 rounded-xl bg-black text-white'>Login</button>
     </form>
     </div>
   );

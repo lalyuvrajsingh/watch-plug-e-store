@@ -5,6 +5,10 @@ import dynamic from 'next/dynamic';
 import CustomSlider from './components/CustomSlider';
 import Categories from "./components/Categories";
 import Products from "./components/Products";
+import Watches from "./components/Watches";
+import Purses from "./components/Purses";
+import Merch from "./components/Merch";
+import ProductSlide from "./components/ProductSlide";
 
 
 
@@ -41,7 +45,11 @@ export default function Home() {
       {/* <CustomSlider slides={slides} className="w-[400px]"/> */}
       <Slideshow/>
       <Categories categories={categories}/>
+      <ProductSlide/>
       <Products/>
+      <Watches />
+      <Purses />
+      <Merch />
       {/* <ProductGrid products={products} /> */}
     </div>
   );
