@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react';
 import React, { useEffect, useRef } from 'react';
+import { db } from '../../../firebaseConfig';
+import { collection, getDocs, query } from 'firebase/firestore';
+import { where } from 'firebase/firestore';
 
 
 
@@ -9,7 +12,7 @@ import React, { useEffect, useRef } from 'react';
 
 
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, category }) {
 
 
 
@@ -35,6 +38,28 @@ const handleVideoClick = () => {
     videoRef.current.play();
   }
 };
+
+const [products, setProducts] = useState([]);
+
+useEffect(() => {
+        const fetchProducts = async () => {
+          const colRef = collection(db, 'products'); // Ensure colRef is defined within this block
+          let q;
+          if (category) {
+            q = query(colRef, where('category', '==', category));
+          } else {
+            q = query(colRef);
+          }
+          const querySnapshot = await getDocs(q);
+          const fetchedProducts = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
+          setProducts(fetchedProducts);
+        };
+    
+        fetchProducts();
+      }, [category]);
 
 
 

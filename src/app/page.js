@@ -9,6 +9,8 @@ import Watches from "./components/Watches";
 import Purses from "./components/Purses";
 import Merch from "./components/Merch";
 import ProductSlide from "./components/ProductSlide";
+import WatchSlide from "./components/CategorySlide";
+import CategorySlide from "./components/CategorySlide";
 
 
 
@@ -44,7 +46,11 @@ export default function Home() {
       <Navbar/>
       {/* <CustomSlider slides={slides} className="w-[400px]"/> */}
       <Slideshow/>
-      <Categories categories={categories}/>
+      {/* <Categories categories={categories}/> */}
+      <WatchSlide/>
+      <CategorySlide category="Watch" title="Latest Watches" />
+      <CategorySlide category="Purse" title="New Purses" />
+      <CategorySlide category="Merch" title="Featured Merchandise" />
       <ProductSlide/>
       <Products/>
       <Watches />
