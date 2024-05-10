@@ -65,17 +65,17 @@ useEffect(() => {
 
     return (
       <div>
-      <div onClick={() => setShowModal(true)} className="border h-[550px] hover:shadow-2xl transition-shadow ease-in-out rounded-2xl m-1 my-3 mt-10  shadow-xl p-4">
+      <div onClick={() => setShowModal(true)} className="border  h-fit md:h-fit lg:h-[550px]  hover:shadow-xl transition-shadow ease-in-out rounded-2xl m-1   shadow-lg p-4">
       <div className="text-green-700 w-fit  p-1 rounded-xl shadow-md bg-green-100 border">{`${product.discount}% Discount`}</div>
         
-        <div className="flex flex-col items-center justify-center align-middle text-center">
-        <img src={product.coverImage} alt={product.name} className="p-4 rounded-xl h-[350px]" />
-            <h3 className="text-md h-min-3 text-gray-500">{product.brand}</h3>
-          <h3 className="text-lg font-semibold">{product.name}</h3>
+        <div className="flex flex-col lg:mb-10 items-center justify-center align-middle text-center">
+        <img src={product.coverImage} alt={product.name} className="p-4 rounded-xl h-[240px] lg:h-[350px]" />
+            <h3 className="lg:text-md text-sm h-min-3 text-gray-500">{product.brand}</h3>
+          <h3 className="lg:text-lg text-sm font-semibold">{product.name}</h3>
           <p className="text-gray-700">{`$ ${product.sellingPrice}`}</p>
           {/* <p className="text-gray-400 line-through ">{`$ ${product.mrp}`}</p> */}
           {/* <a href="https://www.instagram.com/direct/t/102481277818851" target="_blank">Message us on Instagram */}
-          <button className="mt-4 border border-gray-300 rounded-xl hover:shadow-md transition-shadow ease-in-out  text-gray-400 font-bold py-2 px-4 ">
+          <button className="mt-4 border hidden lg:flex border-gray-300 rounded-xl hover:shadow-md transition-shadow ease-in-out  text-gray-400 font-bold py-2 px-4 ">
             Check Our Selling Price
           </button>
           {/* </a> */}
@@ -120,7 +120,7 @@ useEffect(() => {
               
               </div>
 
-            <p className='relative bottom-5 font-semibold mt-5 px-2'>{`Please DM us on Instagram to get your ${product.name}!` }</p>
+            <p className='relative bottom-5 font-semibold mt-5 px-2'>{`Please DM us on Instagram to get your ${product.name}.` }</p>
             <p className='border text-center border-dashed py-4 mt-5 border-gray-400 rounded-xl text-gray-400 font-semibold bottom-12 px-2'>{`Hi! I am interested in ${product.name}.` }</p>
             <div className=' mt-10 flex justify-center items-center'>
             <a

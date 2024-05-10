@@ -1,11 +1,13 @@
 import React from 'react'
-import Watches from '../components/Watches'
+import Navbar from '../components/Navbar'
+import Watches from '../components/Watch'
 
 function WatchPage() {
   return (
     <div>
-       <Watches/>
-   </div>
+        <Navbar/>
+        <Watches/>
+    </div>
   )
 }
 

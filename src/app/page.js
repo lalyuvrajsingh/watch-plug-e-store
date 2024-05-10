@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 import CustomSlider from './components/CustomSlider';
 import Categories from "./components/Categories";
 import Products from "./components/Products";
-import Watches from "./components/Watches";
-import Purses from "./components/Purses";
+import Watches from "./components/Watch";
+import Purses from "./components/Purse";
 import Merch from "./components/Merch";
 import ProductSlide from "./components/ProductSlide";
 import WatchSlide from "./components/CategorySlide";
@@ -47,10 +47,10 @@ export default function Home() {
       {/* <CustomSlider slides={slides} className="w-[400px]"/> */}
       <Slideshow/>
       {/* <Categories categories={categories}/> */}
-      <WatchSlide/>
+      {/* <WatchSlide/> */}
       <CategorySlide category="Watch" title="Latest Watches" />
-      <CategorySlide category="Purse" title="New Purses" />
-      <CategorySlide category="Merch" title="Featured Merchandise" />
+      <CategorySlide category="Purse" title="Hermes Purses" />
+      <CategorySlide category="Merch" title="Merch" />
       <ProductSlide/>
       <Products/>
       <Watches />
