@@ -7,7 +7,7 @@
    return (
      <div>
         <Navbar/>
-        <Purses/>
+        <ProductGallery initialCategory="Purse" hideCategoryDropdown={true}/>
     </div>
    )
  }

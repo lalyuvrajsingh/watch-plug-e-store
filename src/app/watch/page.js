@@ -1,12 +1,13 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Watches from '../components/Watch'
+import ProductGallery from '../components/ProductGallery'
 
 function WatchPage() {
   return (
     <div>
         <Navbar/>
-        <Watches/>
+        <ProductGallery initialCategory="Watch" hideCategoryDropdown={true} />
     </div>
   )
 }

@@ -37,7 +37,7 @@ export default function CategorySlide({ category, title }) {
     return (
       <div className="my-5 mt-10">
         
-        <div className="flex justify-between items-center lg:mx-5 mx-1 px-1">
+        <div className="flex justify-between items-center mb-3 lg:mx-5 mx-1 px-1">
         {title && (
           <h2 className="text-2xl w-fit font-semibold text-center">{title}</h2>
         )}
@@ -49,7 +49,7 @@ export default function CategorySlide({ category, title }) {
         </div>
         <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4">
           {products.map(product => (
-            <div key={product.id} className="snap-center shrink-0 first:pl-4 last:pr-4">
+            <div key={product.id} className="snap-center shrink-0 first:pl-0 last:pr-4">
               <ProductCard product={product} />
             </div>
           ))}

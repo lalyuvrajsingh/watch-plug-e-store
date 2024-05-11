@@ -11,6 +11,8 @@ import Merch from "./components/Merch";
 import ProductSlide from "./components/ProductSlide";
 import WatchSlide from "./components/CategorySlide";
 import CategorySlide from "./components/CategorySlide";
+import NewlyLaunchedProducts from "./components/NewlyLaunchedProducts";
+import ProductGallery from "./components/ProductGallery";
 
 
 
@@ -48,14 +50,16 @@ export default function Home() {
       <Slideshow/>
       {/* <Categories categories={categories}/> */}
       {/* <WatchSlide/> */}
+      {/* <NewlyLaunchedProducts category="Watch" title="Latest Watches"/> */}
       <CategorySlide category="Watch" title="Latest Watches" />
       <CategorySlide category="Purse" title="Hermes Purses" />
       <CategorySlide category="Merch" title="Merch" />
-      <ProductSlide/>
-      <Products/>
-      <Watches />
+      {/* <ProductSlide/> */}
+      <ProductGallery/>
+      {/* <Products/> */}
+      {/* <Watches />
       <Purses />
-      <Merch />
+      <Merch /> */}
       {/* <ProductGrid products={products} /> */}
     </div>
   );
