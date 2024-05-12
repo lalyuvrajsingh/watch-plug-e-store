@@ -96,7 +96,7 @@ function ProductGallery({ initialCategory = 'All', hideCategoryDropdown = false 
                 </div>
             </div>
             {displayProducts.length > 0 ? (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
                     {displayProducts.map(product => (
                         <ProductCard key={product.id} product={product} />
                     ))}

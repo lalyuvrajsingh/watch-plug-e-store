@@ -65,11 +65,11 @@ useEffect(() => {
 
     return (
       <div>
-      <div onClick={() => setShowModal(true)} className="border w-[180px]  h-full md:h-max lg:h-[550px]  hover:shadow-xl transition-shadow ease-in-out rounded-2xl m-1   shadow-sm p-2 lg:p-4">
+      <div onClick={() => setShowModal(true)} className="border min-w-[200px] h-full md:h-max   hover:shadow-xl transition-shadow ease-in-out rounded-2xl shadow-sm p-2 lg:p-4">
       <div className="text-green-700 w-fit lg:text-sm text-xs p-1 rounded-xl shadow-md bg-green-100 border">{`${product.discount}% Discount`}</div>
         
-        <div className="flex flex-col lg:mb-10 items-center justify-center align-middle text-center">
-        <img src={product.coverImage} alt={product.name} className="p-4 rounded-xl h-[150px] lg:h-[350px]" />
+        <div className="flex flex-col items-center justify-center align-middle text-center">
+        <img src={product.coverImage} alt={product.name} className="p-4 rounded-xl h-[150px] " />
             <h3 className="lg:text-md text-xs mb-1 text-gray-500">{product.brand}</h3>
           <h3 className="lg:text-lg text-sm mb-1 font-semibold">{product.name}</h3>
           <p className="text-gray-700">{`$ ${product.sellingPrice}`}</p>
