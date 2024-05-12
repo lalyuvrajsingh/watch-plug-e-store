@@ -51,9 +51,9 @@ export default function Home() {
       {/* <Categories categories={categories}/> */}
       {/* <WatchSlide/> */}
       {/* <NewlyLaunchedProducts category="Watch" title="Latest Watches"/> */}
-      <CategorySlide category="Watch" title="Latest Watches" />
-      <CategorySlide category="Purse" title="Hermes Purses" />
-      <CategorySlide category="Merch" title="Merch" />
+      <CategorySlide category="Watch" title="Latest Watches"/>
+      <CategorySlide category="Purse" title="Hermes Purses"/>
+      <CategorySlide category="Merch" title="Merch"/>
       {/* <ProductSlide/> */}
       <ProductGallery/>
       {/* <Products/> */}

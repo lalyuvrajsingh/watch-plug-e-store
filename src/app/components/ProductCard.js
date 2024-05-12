@@ -62,6 +62,21 @@ useEffect(() => {
       }, [category]);
 
 
+      const textToCopy = `Hi! I am interested in ${product.name}.`
+
+      const [isCopied, setIsCopied] = useState(false);
+
+const handleCopyText = async () => {
+    try {
+        await navigator.clipboard.writeText(textToCopy);
+        setIsCopied(true);
+         // Optionally show feedback to the user.
+    } catch (err) {
+        console.error('Failed to copy!', err);
+    }
+}
+
+
 
     return (
       <div>
@@ -69,7 +84,7 @@ useEffect(() => {
       <div className="text-green-700 w-fit lg:text-sm text-xs p-1 rounded-xl shadow-md bg-green-100 border">{`${product.discount}% Discount`}</div>
         
         <div className="flex flex-col items-center justify-center align-middle text-center">
-        <img src={product.coverImage} alt={product.name} className="p-4 rounded-xl h-[150px] " />
+        <img src={product.coverImage} alt={product.name} className="p-4 rounded-xl h-[150px] "/>
             <h3 className="lg:text-md text-xs mb-1 text-gray-500">{product.brand}</h3>
           <h3 className="lg:text-lg text-sm mb-1 font-semibold">{product.name}</h3>
           <p className="text-gray-700">{`$ ${product.sellingPrice}`}</p>
@@ -83,7 +98,7 @@ useEffect(() => {
       </div>
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0  bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed inset-0 z-20  bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-4 mx-4 h-fit rounded-2xl shadow-xl max-w-sm">
             <button
               onClick={() => setShowModal(false)}
@@ -123,14 +138,12 @@ useEffect(() => {
             <p className='relative bottom-5 font-semibold mt-5 px-2'>{`Please DM us on Instagram to get your ${product.name}.` }</p>
             <p className='border text-center border-dashed py-4 mt-5 border-gray-400 rounded-xl text-gray-400 font-semibold bottom-12 px-2'>{`Hi! I am interested in ${product.name}.` }</p>
             <div className=' mt-10 flex justify-center items-center'>
-            <a
-              href="https://instagram.com/lalyuvrajsingh"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={handleCopyText}
               className=" mx-3 inline-block border border-black text-black px-3 py-2 rounded-2xl shadow-lg hover:bg-gray-200"
             >
-              Copy Message
-            </a>
+              {isCopied ? 'Copied!' : 'Copy Text'}  
+            </button>
             <a
               href="https://www.instagram.com/watchplug/"
               target="_blank"

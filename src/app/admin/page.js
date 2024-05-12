@@ -42,7 +42,6 @@ function AdminDashboard() {
   const [formData, setFormData] = useState({
     category: '',
     brand: '',
-    image: '',
     date: '',
     mrp: '',
     sellingPrice: '',
@@ -65,9 +64,9 @@ function AdminDashboard() {
   const [imageFile, setImageFile] = useState(null);
   const [coverImageFile, setCoverImageFile] = useState(null);
 
-  const handleImageChange = e => {
-      setImageFile(e.target.files[0]);
-  };
+  // const handleImageChange = e => {
+  //     setImageFile(e.target.files[0]);
+  // };
 
   const handleCoverImageChange = e => {
       setCoverImageFile(e.target.files[0]);
@@ -77,30 +76,26 @@ function AdminDashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!imageFile || !coverImageFile) {
-        alert('Please select both an image and a cover image.');
-        return;
-    }
+    
 
     const storage = getStorage();
 
     // Paths in storage
-    const imageRef = ref(storage, `images/${imageFile.name}`);
+    // const imageRef = ref(storage, `images/${imageFile.name}`);
     const coverImageRef = ref(storage, `coverImages/${coverImageFile.name}`);
 
     try {
         // Upload image and cover image
-        const imageSnapshot = await uploadBytes(imageRef, imageFile);
+        // const imageSnapshot = await uploadBytes(imageRef, imageFile);
         const coverImageSnapshot = await uploadBytes(coverImageRef, coverImageFile);
 
         // Get download URLs
-        const imageUrl = await getDownloadURL(imageSnapshot.ref);
+        // const imageUrl = await getDownloadURL(imageSnapshot.ref);
         const coverImageUrl = await getDownloadURL(coverImageSnapshot.ref);
 
         // Add product data to Firestore
         await addDoc(collection(db, 'products'), {
             ...formData,
-            image: imageUrl,
             coverImage: coverImageUrl,
             date: new Date(formData.date)
         });
@@ -124,7 +119,7 @@ function AdminDashboard() {
         <input type="text" name="brand" value={formData.brand} onChange={handleChange} placeholder="Brand/Size" className="input border m-2 p-1 rounded-xl" />
         <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" className="input border m-2 p-1 rounded-xl" />
         <input type="file" name="coverImage" onChange={handleCoverImageChange} className="input border m-2 p-1 rounded-xl" />
-        <input type="file" name="image" onChange={handleImageChange} className="input border m-2 p-1 rounded-xl" />
+        {/* <input type="file" name="image" onChange={handleImageChange} className="input border m-2 p-1 rounded-xl" /> */}
         <input type="date" name="date" value={formData.date} onChange={handleChange} className="input border m-2 p-1 rounded-xl" />
         {/* <input type="number" name="mrp" value={formData.mrp} onChange={handleChange} placeholder="MRP in $" className="input border m-2 p-1 rounded-xl" /> */}
         <input type="number" name="sellingPrice" value={formData.sellingPrice} onChange={handleChange} placeholder="Selling Price in $" className="input border m-2 p-1 rounded-xl" />
