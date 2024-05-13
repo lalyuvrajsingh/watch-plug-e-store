@@ -4,6 +4,7 @@ import { db } from '../../../firebaseConfig';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import ProductCard from './ProductCard';
 import { where } from 'firebase/firestore';
+import LoadingSpinner from './LoadingSpinner';
 
 
 function ProductGallery({ initialCategory = 'All', hideCategoryDropdown = false }) {
@@ -55,15 +56,29 @@ function ProductGallery({ initialCategory = 'All', hideCategoryDropdown = false 
         setDisplayProducts(sortedProducts);
     }, [products, sortType, searchTerm]);
 
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      // Simulate a fetch delay
+      setTimeout(() => {
+          setLoading(false);
+      }, 2000);  // Loading screen will show for 3 seconds
+  }, []);
+  
+  if (loading) {
+      return <LoadingSpinner />;
+  }
+
     return (
-        <div className="container w-fit mx-auto px-1 lg:px-4 py-1 lg:py-6">
-            <div className="flex justify-between items-center mb-4">
+        <div className="container w-fit  mx-auto px-1 lg:px-4 py-1 lg:py-6">
+            <div className="flex   justify-between items-center mb-4">
 
 
                 <input 
                     type="text"
                     placeholder="Search by name or brand..."
-                    className="p-2 w-fit rounded-xl border mx-3"
+                    className="p-2 w-fit mt-3 rounded-xl border mx-3"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -95,6 +110,7 @@ function ProductGallery({ initialCategory = 'All', hideCategoryDropdown = false 
                 </select>
                 </div>
             </div>
+            <hr className='mb-5'/>
             {displayProducts.length > 0 ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
                     {displayProducts.map(product => (

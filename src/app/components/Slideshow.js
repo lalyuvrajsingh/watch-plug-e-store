@@ -2,9 +2,8 @@
 import React from 'react';
 import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-
-
-
+import { useEffect, useState } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 
 
 function Slideshow() {
@@ -49,6 +48,19 @@ const fadeImages = [
       caption: 'Third Slide'
     },
   ];
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a fetch delay
+    setTimeout(() => {
+        setLoading(false);
+    }, 2000);  // Loading screen will show for 3 seconds
+}, []);
+
+if (loading) {
+    return <LoadingSpinner />;
+}
 
   return (
     <div className="mx-5 mt-4  p-5 shadow-xl rounded-2xl">

@@ -7,7 +7,7 @@ export default function Categories({ categories }) {
     <div className="w-fit grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-5">
         {categories.map(category => (
         
-        <div className="border hover:shadow-2xl transition-shadow ease-in-out rounded-3xl h-fit shadow-xl">
+        <div key={category.name} className="border hover:shadow-2xl transition-shadow ease-in-out rounded-3xl h-fit shadow-xl">
         <h3 className="text-lg text-center mt-3 font-semibold">{category.name}</h3>
             <img src={category.image} alt={category.name} className="h-[300px] rounded-3xl" />
             <div className="">

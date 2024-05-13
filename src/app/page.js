@@ -43,6 +43,8 @@ export default function Home() {
     // add more slides as needed
   ];
 
+  
+
   return (
     <div className="container">
       <Navbar/>
@@ -55,6 +57,8 @@ export default function Home() {
       <CategorySlide category="Purse" title="Hermes Purses"/>
       <CategorySlide category="Merch" title="Merch"/>
       {/* <ProductSlide/> */}
+      <h2 className="text-2xl w-fit text-gray-500 mx-4 mt-8 mb-2 font-semibold text-center">Shop More</h2>
+      <hr className="mb-5"/>
       <ProductGallery/>
       {/* <Products/> */}
       {/* <Watches />

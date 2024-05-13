@@ -12,7 +12,7 @@ import { where } from 'firebase/firestore';
 
 
 
-export default function ProductCard({ product, category }) {
+export default function ProductCard({ product, category, isInSlide }) {
 
 
 
@@ -76,11 +76,12 @@ const handleCopyText = async () => {
     }
 }
 
+const cardClass = isInSlide ? "w-[190px] h-[290px]" : "";  
 
 
     return (
       <div>
-      <div onClick={() => setShowModal(true)} className="border min-w-[200px] h-full md:h-max   hover:shadow-xl transition-shadow ease-in-out rounded-2xl shadow-sm p-2 lg:p-4">
+      <div onClick={() => setShowModal(true)} className={`border ${cardClass}  lg:min-w-[200px] h-full md:h-max   hover:shadow-xl transition-shadow ease-in-out rounded-2xl shadow-sm p-2 lg:p-4`}>
       <div className="text-green-700 w-fit lg:text-sm text-xs p-1 rounded-xl shadow-md bg-green-100 border">{`${product.discount}% Discount`}</div>
         
         <div className="flex flex-col items-center justify-center align-middle text-center">

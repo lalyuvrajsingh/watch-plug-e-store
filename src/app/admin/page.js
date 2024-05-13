@@ -115,7 +115,20 @@ function AdminDashboard() {
       <h1 className="text-center text-gray-500 text-5xl mt-8 mb-8 font-bold">Admin Panel</h1>
 
       <form onSubmit={handleSubmit} className="flex rounded-2xl lg:w-[600px] flex-col border p-3 m-5 shadow-xl space-y-4">
-        <input type="text" name="category" value={formData.category} onChange={handleChange} placeholder="Category" className="input border m-2 p-1 rounded-xl" />
+        {/* <input type="text" name="category" value={formData.category} onChange={handleChange} placeholder="Category" className="input border m-2 p-1 rounded-xl" /> */}
+        <p className='px-3 font font-medium'>Category</p>
+        <select 
+                    className="mx-2 text-sm rounded-xl lg:text-md"
+                    value={formData.category} 
+                    onChange={handleChange}
+                    type="text" 
+                    name="category"
+                >
+                
+                    <option value="Watch">Watch</option>
+                    <option value="Purse">Purse</option>
+                    <option value="Merch">Merch</option>
+                </select>
         <input type="text" name="brand" value={formData.brand} onChange={handleChange} placeholder="Brand/Size" className="input border m-2 p-1 rounded-xl" />
         <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" className="input border m-2 p-1 rounded-xl" />
         <input type="file" name="coverImage" onChange={handleCoverImageChange} className="input border m-2 p-1 rounded-xl" />
