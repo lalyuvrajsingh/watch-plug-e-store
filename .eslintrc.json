@@ -1,9 +1,11 @@
 {
   "extends": "next/core-web-vitals",
 
+  
     "rules": {
-      "react/display-name": ["error", { "ignoreTranspilerName": true }]
+      "react/display-name": "off"
     }
+  
   
 }
 
