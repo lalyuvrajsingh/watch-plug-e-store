@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { auth } from '../../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
+
 const withAdminAuth = (Component) => {
   const WrappedComponent = (props) => {
     const [user, setUser] = useState(null);

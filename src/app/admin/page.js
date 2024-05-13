@@ -158,4 +158,7 @@ function AdminDashboard() {
   );
 }
 
+AdminDashboard.displayName = 'AdminDashboard';
+
+
 export default withAdminAuth(AdminDashboard);
