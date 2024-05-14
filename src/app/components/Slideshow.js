@@ -42,11 +42,7 @@ const fadeImages = [
     {
       url: '/IMG_5353 2.PNG',
       caption: 'Third Slide'
-    },
-    {
-      url: '/IMG_53514 2.PNG',
-      caption: 'Third Slide'
-    },
+    }
   ];
 
   const [loading, setLoading] = useState(true);
@@ -66,8 +62,8 @@ if (loading) {
     <div className="mx-5 mt-4  p-5 shadow-xl rounded-2xl">
       <Fade>
         {fadeImages.map((fadeImage, index) => (
-          <div key={index} className=' flex flex-col justify-center items-center max-w-[500px]'>
-            <img className="h-[400px] w-full rounded-2xl " src={fadeImage.url} />
+          <div key={index} className=' flex flex-col justify-center items-center '>
+            <img className="max-h-[400px]  rounded-2xl " src={fadeImage.url} />
           </div>
         ))}
       </Fade>
