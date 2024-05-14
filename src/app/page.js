@@ -13,6 +13,7 @@ import WatchSlide from "./components/CategorySlide";
 import CategorySlide from "./components/CategorySlide";
 import NewlyLaunchedProducts from "./components/NewlyLaunchedProducts";
 import ProductGallery from "./components/ProductGallery";
+import Logo from "./components/Logo";
 
 
 
@@ -47,7 +48,9 @@ export default function Home() {
 
   return (
     <div className="container">
+    
       <Navbar/>
+      
       {/* <CustomSlider slides={slides} className="w-[400px]"/> */}
       <Slideshow/>
       {/* <Categories categories={categories}/> */}

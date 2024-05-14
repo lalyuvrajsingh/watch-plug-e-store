@@ -40,16 +40,16 @@ export default function CategorySlide({ category, title }) {
 
     const linkCategory = category.toLowerCase()
 
-    useEffect(() => {
-      // Simulate a fetch delay
-      setTimeout(() => {
-          setLoading(false);
-      }, 2000);  // Loading screen will show for 3 seconds
-  }, []);
+  //   useEffect(() => {
+  //     // Simulate a fetch delay
+  //     setTimeout(() => {
+  //         setLoading(false);
+  //     }, 2000);  // Loading screen will show for 3 seconds
+  // }, []);
 
-  if (loading) {
-      return <LoadingSpinner />;
-  }
+  // if (loading) {
+  //     return <LoadingSpinner />;
+  // }
 
   return (
     <div className="my-5 mt-10">

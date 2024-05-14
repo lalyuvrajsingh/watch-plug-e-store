@@ -4,6 +4,7 @@ import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import { useEffect, useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
+import Logo from './Logo';
 
 
 function Slideshow() {
@@ -55,7 +56,7 @@ const fadeImages = [
 }, []);
 
 if (loading) {
-    return <LoadingSpinner />;
+    return <Logo />;
 }
 
   return (
