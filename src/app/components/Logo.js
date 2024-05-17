@@ -14,7 +14,7 @@ const Logo = () => {
         animate={{ scale: 1 }}
         transition={{ duration: 3, ease: "easeInOut" }}
       >
-        <img src="/Screenshot 2024-05-02 at 8.44.27 AM.png" alt="Logo" className=" h-32" />
+        <img src="/IMG_1F648BE3B1BB-1.jpeg" alt="Logo" className=" h-52" />
       </motion.div>
     </div>
   );

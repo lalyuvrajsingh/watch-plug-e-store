@@ -14,7 +14,7 @@ export default function Navbar() {
                       <div>
                           <Link href="/" className="flex items-center">
                             
-                                  <img src="/Screenshot 2024-05-02 at 8.44.27 AM.png" className='h-10' alt="Logo"/>
+                                  <img src="/IMG_2D6D8B9531AC-1.jpeg" className='h-10' alt="Logo"/>
                             
                           </Link>
                       </div>
