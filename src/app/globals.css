@@ -34,3 +34,37 @@ body {
 
 }
 
+
+
+
+.logocontainer {
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 2s ease-in-out;
+}
+
+.logoimage {
+  width: 64px;
+  height: 64px;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+

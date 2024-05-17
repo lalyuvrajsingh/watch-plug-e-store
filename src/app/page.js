@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <div className="container">
-    
+     
       <Navbar/>
       
       {/* <CustomSlider slides={slides} className="w-[400px]"/> */}

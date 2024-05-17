@@ -5,6 +5,7 @@ import "./globals.css";
 import Logo from "./components/Logo";
 
 
+
 export const metadata = {
   title: "watchplug",
   description: "Shop luxury Watches, Purses, & Merch.",

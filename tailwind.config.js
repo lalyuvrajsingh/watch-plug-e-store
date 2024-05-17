@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionDuration: {
+        '2000': '2000ms',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -15,7 +18,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Open Sans', 'Helvetica', 'Arial', 'sans-serif']
-      }
+      },
+      
     },
   },
   plugins: [],
