@@ -6,17 +6,21 @@ import Logo from "./components/Logo";
 
 
 
+
 export const metadata = {
   title: "watchplug",
   description: "Shop luxury Watches, Purses, & Merch.",
 };
 
+
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-      <link rel="icon" href="/WP logo.jpeg" />
+      <link rel="icon" href="/WP logo.jpeg"/>
       </Head>
+
       
       <body >
       {children}

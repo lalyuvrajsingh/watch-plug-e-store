@@ -52,7 +52,7 @@ const fadeImages = [
     // Simulate a fetch delay
     setTimeout(() => {
         setLoading(false);
-    }, 2000);  // Loading screen will show for 3 seconds
+    }, 4000);  // Loading screen will show for 3 seconds
 }, []);
 
 if (loading) {

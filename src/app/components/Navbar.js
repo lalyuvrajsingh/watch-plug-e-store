@@ -7,14 +7,14 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // This controls the mobile menu
 
   return (
-      <nav className="bg-white border-b-4 border-gray-900 border-opacity-50 py-5 shadow-md">
+      <nav className="bg-white border-b-4 border-gray-900 border-opacity-50 py-3 shadow-md">
           <div className="max-w-6xl mx-auto px-4">
               <div className="flex justify-between">
                   <div className="flex space-x-4">
                       <div>
                           <Link href="/" className="flex items-center">
                             
-                                  <img src="/IMG_2D6D8B9531AC-1.jpeg" className='h-10' alt="Logo"/>
+                                <img src="/IMG_1F648BE3B1BB-1.jpeg" className='h-12' alt="Logo"/>
                             
                           </Link>
                       </div>
