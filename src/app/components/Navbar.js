@@ -8,17 +8,16 @@ export default function Navbar() {
 
   return (
       <nav className="bg-white border-b-4 border-gray-900 border-opacity-50 py-3 shadow-md">
-          <div className="max-w-6xl mx-auto px-4">
-              <div className="flex justify-between">
-                  <div className="flex space-x-4">
-                      <div>
-                          <Link href="/" className="flex items-center">
-                            
-                                <img src="/IMG_1F648BE3B1BB-1.jpeg" className='h-12' alt="Logo"/>
-                            
+          <div className="max-w-6xl flex px-4">
+          <div>
+                          <Link href="/" className="">
+                                <img src="/IMG_1F648BE3B1BB-1.jpeg" className='h-[60px]' alt="Logo"/>
                           </Link>
                       </div>
-                      <div className="hidden md:flex items-center space-x-1">
+              <div className="flex  w-full justify-center">
+                  <div className="flex space-x-4">
+                      
+                      <div className="hidden justify-center w-max md:flex items-center space-x-1">
                           <Link href="/" className="px-2 text-gray-500 font-semibold">
                               Home
                           </Link>
@@ -37,7 +36,7 @@ export default function Navbar() {
                                   </div>
                               )}
                           </div>
-                          <Link href="/contact" className="px-2 text-gray-500 font-semibold">
+                          <Link href="/contact" className="px-2 w-fit text-gray-500 font-semibold">
                               Contact
                           </Link>
                       </div>

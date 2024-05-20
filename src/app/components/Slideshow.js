@@ -52,7 +52,7 @@ const fadeImages = [
     // Simulate a fetch delay
     setTimeout(() => {
         setLoading(false);
-    }, 4000);  // Loading screen will show for 3 seconds
+    }, 3000);  // Loading screen will show for 3 seconds
 }, []);
 
 if (loading) {
@@ -60,10 +60,10 @@ if (loading) {
 }
 
   return (
-    <div className="mx-5 mt-4  p-5 shadow-xl rounded-2xl">
+    <div className="sm:hidden mx-5 mt-4 p-5 shadow-xl rounded-2x">
       <Fade>
         {fadeImages.map((fadeImage, index) => (
-          <div key={index} className=' flex flex-col justify-center items-center '>
+          <div key={index} className=' flex flex-col justify-center items-center'>
             <img className="max-h-[400px]  rounded-2xl " src={fadeImage.url} />
           </div>
         ))}
