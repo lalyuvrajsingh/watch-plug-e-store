@@ -14,7 +14,7 @@ export default function Navbar() {
                                 <img src="/IMG_1F648BE3B1BB-1.jpeg" className='h-[60px]' alt="Logo"/>
                           </Link>
                       </div>
-              <div className="flex  w-full justify-center">
+              <div className="flex ml-10 w-full justify-between lg:justify-center">
                   <div className="flex space-x-4">
                       
                       <div className="hidden justify-center w-max md:flex items-center space-x-1">
