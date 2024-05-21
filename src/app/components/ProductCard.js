@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { db } from '../../../firebaseConfig';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { where } from 'firebase/firestore';
+import { FaInstagram } from 'react-icons/fa';  
 
 
 
@@ -78,6 +79,10 @@ const handleCopyText = async () => {
 
 const cardClass = isInSlide ? "w-[190px] h-[290px]" : "";  
 
+const formatPrice = (price) => {
+  return Number(price).toLocaleString();
+};
+
 
     return (
       <div>
@@ -88,7 +93,7 @@ const cardClass = isInSlide ? "w-[190px] h-[290px]" : "";
         <img src={product.coverImage} alt={product.name} className="p-4 rounded-xl h-[150px] "/>
             <h3 className="lg:text-md text-xs mb-1 text-gray-500">{product.brand}</h3>
           <h3 className="lg:text-lg text-sm mb-1 font-semibold">{product.name}</h3>
-          <p className="text-gray-700">{`$ ${product.sellingPrice}`}</p>
+          <p className="text-gray-700">{`$ ${formatPrice(product.sellingPrice)}`}</p>
           {/* <p className="text-gray-400 line-through ">{`$ ${product.mrp}`}</p> */}
           {/* <a href="https://www.instagram.com/direct/t/102481277818851" target="_blank">Message us on Instagram */}
           <button className="mt-4 border hidden lg:flex border-gray-300 rounded-xl hover:shadow-md transition-shadow ease-in-out  text-gray-400 font-bold py-2 px-4 ">
@@ -131,14 +136,23 @@ const cardClass = isInSlide ? "w-[190px] h-[290px]" : "";
               <img src={product.coverImage} alt={product.name} className="w-[75px] mx-4" />
               <div className='ml-4'>
                 <h2 className="text-xl text-gray-500 font-bold">{product.name}</h2>
-                <p className="font-bold text-gray-500 ">{`Price: $${product.sellingPrice}`}</p>
+                <p className="text-gray-700">{`$ ${formatPrice(product.sellingPrice)}`}</p>
+                
               </div>
               
               </div>
 
-            <p className='relative bottom-5 font-semibold mt-5 px-2'>{`Please DM us on Instagram to get your ${product.name}.` }</p>
-            <p className='border text-center border-dashed py-4 mt-5 border-gray-400 rounded-xl text-gray-400 font-semibold bottom-12 px-2'>{`Hi! I am interested in ${product.name}.` }</p>
+            <p className='relative bottom-5 font-semibold mt-5 px-2'>{`Drop us a text to get your ${product.name.toLowerCase()}.` }</p>
+            
+            <p className='border text-center border-dashed py-4 mt-1 border-gray-400 rounded-xl text-gray-400 font-semibold bottom-12 px-2'>{`Hi! I am interested in ${product.name}.` }</p>
+            <p className="text-gray-500 font-semibold mt-5 px-2">{`+1 (714) 930-4044`}</p>
+            <a href="https://www.instagram.com/watchplug/" target="_blank" rel="noopener noreferrer" className="flex px-1 text-gray-500">
+                        <FaInstagram size={24} />
+            
+            <p className="text-gray-500 font-semibold px-2">@watchplug</p>
+            </a>
             <div className=' mt-10 flex justify-center items-center'>
+            
             <button
               onClick={handleCopyText}
               className=" mx-3 inline-block border border-black text-black px-3 py-2 rounded-2xl shadow-lg hover:bg-gray-200"

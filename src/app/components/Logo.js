@@ -7,7 +7,7 @@ const Logo = () => {
   const [showContent, setShowContent] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowContent(false), 2000); // 3 seconds before fade out
+    const timer = setTimeout(() => setShowContent(false), 1000); // 3 seconds before fade out
     return () => clearTimeout(timer);
   }, []);
 
