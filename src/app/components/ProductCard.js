@@ -105,10 +105,10 @@ const formatPrice = (price) => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-20  bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-4 mx-4 h-fit rounded-2xl shadow-xl max-w-sm">
+          <div className="bg-white px-4 mx-4 h-fit rounded-2xl shadow-xl max-w-sm">
             <button
               onClick={() => setShowModal(false)}
-              className="relative left-2 lg:left-[345px] bottom-3 text-xl  font-semibold"
+              className="my-2 text-2xl  font-semibold"
             >
               &times;
             </button>
