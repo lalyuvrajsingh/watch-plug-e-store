@@ -9,7 +9,7 @@ export default function ContactForm() {
         <div className='lg:flex justify-center items-center p-2 w-full'>
         <div className='mt-8 bg-gray-100 shadow-md rounded-2xl p-4 w-full'>
         <div className='bg-gray-50 pt-5 rounded-2xl shadow-lg p-4 border'>
-          <h2 className='text-5xl mt-1 mb-7 font-extrabold'>Reach out to us at Instagram</h2>
+          <h2 className='text-5xl mt-1 mb-7 font-extrabold'>Reach out to us on Instagram</h2>
           <h2 className='text-4xl mt-7 text-gray-500 font-extrabold'>@watchplug</h2>
           <a href="https://www.instagram.com/watchplug/">
           <button
