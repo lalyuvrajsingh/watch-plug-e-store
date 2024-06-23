@@ -38,6 +38,15 @@ const Footer = () => {
                     <a href="https://www.instagram.com/watchplug/" target="_blank" rel="noopener noreferrer" className="ml-4 text-center text-gray-400 hover:text-white">
                         <FaInstagram size={64} />
                     </a>
+                    
+                </div>
+
+                <div className="flex items-center">
+                    <h5 className="text-lg font-bold mb-2">Call Us</h5>
+                    <a href="tel:+1 (714) 930-4044" target="_blank" rel="noopener noreferrer" className="ml-4 text-center text-gray-400 hover:text-white">
+                        +1 (714) 930-4044
+                    </a>
+                    
                 </div>
             </div>
         </footer>
