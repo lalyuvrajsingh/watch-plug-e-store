@@ -48,7 +48,7 @@ const Contact = () => {
         </div>
         <div className='lg:flex justify-center items-center p-2 w-full'>
         <div className='mt-8 bg-gray-100 shadow-md rounded-2xl p-4 w-full'>
-        <form className="bg-gray-50 rounded-2xl shadow-lg p-4 border" onSubmit={sendEmail}>
+        {/* <form className="bg-gray-50 rounded-2xl shadow-lg p-4 border" onSubmit={sendEmail}>
         <h2 className='text-xl font-extrabold'>Contact us</h2>
           <input type="hidden" name="product_name" value={product.name} />
           <div className="rounded-md shadow-sm">
@@ -96,9 +96,20 @@ const Contact = () => {
               Send Message
             </button>
           </div>
-        </form>
+        </form> */}
+        <div className='bg-gray-50 pt-5 rounded-2xl shadow-lg p-4 border'>
+          <h2 className='text-5xl mt-1 mb-7 font-extrabold'>Call us on</h2>
+          <h2 className='text-4xl mt-7 text-gray-500 font-extrabold'>+1 (714) 930-4044</h2>
+          <a href="tel:+1 (714) 930-4044">
+          <button
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent mt-[85px] text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+            >
+              Send DM!
+            </button>
+            </a>
         </div>
-        <div className='m-4   p-4 text-center'>
+        </div>
+        <div className='m-4 p-4 text-center'>
         <p className=''>or</p>
         </div>
         <div className='mt-8 bg-gray-100 shadow-md rounded-2xl p-4 w-full'>
@@ -107,7 +118,7 @@ const Contact = () => {
           <h2 className='text-4xl mt-7 text-gray-500 font-extrabold'>@watchplug</h2>
           <a href="https://www.instagram.com/watchplug/">
           <button
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent mt-[85px] text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent mt-[35px] text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
             >
               Send DM!
             </button>
