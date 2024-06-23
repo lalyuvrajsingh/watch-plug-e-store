@@ -36,7 +36,7 @@ export default function Navbar() {
                                   </div>
                               )}
                           </div>
-                          <Link href="/contact" className="px-2 w-fit text-gray-500 font-semibold">
+                          <Link href="/contact-us" className="px-2 w-fit text-gray-500 font-semibold">
                               Contact
                           </Link>
                       </div>
@@ -57,7 +57,7 @@ export default function Navbar() {
                       <li><Link href="watch" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Watches</Link></li>
                       <li><Link href="purse" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Purses</Link></li>
                       <li><Link href="merch" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Merch</Link></li>
-                      <li><Link href="/contact" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Contact</Link></li>
+                      <li><Link href="/contact-us" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Contact</Link></li>
                   
                   </ul>
               </div>
