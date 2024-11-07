@@ -1,3 +1,6 @@
+'use client'
+import Image from 'next/image';
+
 export default function BentoGrid() {
   return (
     <section className="py-20 px-4 bg-black">
@@ -6,10 +9,12 @@ export default function BentoGrid() {
           {/* Large Feature Tile */}
           <div className="col-span-2 row-span-2 rounded-3xl overflow-hidden bg-[#FFD700]/20">
             <div className="relative h-[150px]">
-              <img 
+              <Image 
                 src="/watch-image/pexels-pratik-prasad-3736245-14778525 copy.jpg" 
                 alt="Luxury Watch" 
-                className=""
+                width={600}
+                height={150}
+                className="object-cover"
               />
               <div className="absolute bottom-0 left-0 p-8">
                 <h2 className="text-4xl font-bold text-white mb-2">Luxury Exploration</h2>
@@ -65,17 +70,11 @@ export default function BentoGrid() {
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center">
                   <span className="font-bold"></span>
-                  <div className=" rounded-full w-6 h-6 flex items-center justify-center text-white"></div>
+                  <div className="rounded-full w-6 h-6 flex items-center justify-center text-white"></div>
                 </div>
                 <div className="text-2xl pl-8 font-bold mt-2">
-                <h2 className="text-4xl text-gray-800  italic  mb-2">"Where precision meets passion"</h2>
-                <p className="pl-5 text-gray-500">Excellence becomes timeless</p></div>
-                <div className="flex-grow flex items-end">
-                  <div className="w-full h-12  rounded-lg relative">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full "></div>
-                    </div>
-                  </div>
+                  <h2 className="text-4xl text-gray-800 italic mb-2">&ldquo;Where precision meets passion&rdquo;</h2>
+                  <p className="pl-5 text-gray-500">Excellence becomes timeless</p>
                 </div>
               </div>
             </div>
@@ -83,12 +82,12 @@ export default function BentoGrid() {
 
           {/* OS Tile */}
           <div className="rounded-3xl overflow-hidden bg-white">
-            <div className="h-[150px] flex items-center justify-center">
-              
-              <img 
+            <div className="h-[150px] relative">
+              <Image 
                 src="/watch-image/Colorful Luxe Collectio.jpeg" 
                 alt="Luxury Watch" 
-                className=""
+                fill
+                className="object-cover"
               />
             </div>
           </div>
