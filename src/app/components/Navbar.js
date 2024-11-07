@@ -1,68 +1,141 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { FaSearch } from 'react-icons/fa';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // This controls the dropdown menu
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // This controls the mobile menu
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+      setIsAtTop(currentScrollY < 50);
+      
+      // Show navbar when scrolling up or at the very top
+      if (currentScrollY < lastScrollY || currentScrollY < 50) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => window.removeEventListener('scroll', controlNavbar);
+  }, [lastScrollY]);
 
   return (
-      <nav className="bg-white border-b-4 border-gray-900 border-opacity-50 py-3 shadow-md">
-          <div className="max-w-6xl flex px-4">
-          <div>
-                          <Link href="/" className="">
-                                <img src="/IMG_1F648BE3B1BB-1.jpeg" className='h-[60px]' alt="Logo"/>
-                          </Link>
-                      </div>
-              <div className="flex ml-10 w-full justify-between lg:justify-center">
-                  <div className="flex space-x-4">
-                      
-                      <div className="hidden justify-center w-max md:flex items-center space-x-1">
-                          <Link href="/" className="px-2 text-gray-500 font-semibold">
-                              Home
-                          </Link>
-                          <div className="relative">
-                              <button onClick={() => setIsOpen(!isOpen)} className="px-2 text-gray-500 font-semibold inline-flex items-center">
-                                  Categories
-                                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                                  </svg>
-                              </button>
-                              {isOpen && (
-                                  <div className="absolute bg-gray-100 shadow-2xl py-5 border border-gray-200 rounded-xl z-50 w-52">
-                                      <Link href="/watch" className="block px-4 py-2 text-md font-bold text-gray-700 hover:text-gray-400 transition-colors ease-in-out">Watches</Link>
-                                      <Link href="/purse" className="block px-4 py-2 text-md font-bold text-gray-700 hover:text-gray-400 transition-colors ease-in-out">Purses</Link>
-                                      <Link href="/merch" className="block px-4 py-2 text-md font-bold text-gray-700 hover:text-gray-400 transition-colors ease-in-out">Merch</Link>
-                                  </div>
-                              )}
-                          </div>
-                          <Link href="/contact-us" className="px-2 w-fit text-gray-500 font-semibold">
-                              Contact
-                          </Link>
-                      </div>
-                  </div>
-                  <div className="md:hidden flex items-center">
-                      <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="outline-none mobile-menu-button">
-                          <svg className="w-6 h-6 text-gray-500 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                          </svg>
-                      </button>
-                  </div>
-              </div>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+      isVisible ? 'translate-y-0' : '-translate-y-full'
+    } ${
+      isAtTop 
+        ? 'bg-transparent' 
+        : 'bg-black/80 backdrop-blur-sm'
+    }`}>
+      <div className="max-w-7xl mx-auto">
+        <div className={`
+          mx-4 my-2 
+          ${isAtTop 
+            ? 'rounded-full border border-gray-500/20 bg-black/30' 
+            : 'rounded-full border border-gray-500/10 bg-black/50'
+          } 
+          transition-all duration-300
+          px-6 py-3
+          backdrop-blur-sm
+          z-50
+        `}>
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0">
+                <h1 className="text-3xl text-white font-bold">FineChrono</h1>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              <NavLink href="/watch">Timepieces</NavLink>
+              <NavLink href="/purse">Leather Goods</NavLink>
+              <NavLink href="/merch">Accessories</NavLink>
+              <NavLink href="/contact">Contact</NavLink>
+            </div>
+
+            {/* Theme Toggle and Search */}
+            <div className="hidden lg:flex items-center space-x-4">
+              <ThemeToggle />
+              <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                <FaSearch className={`w-5 h-5 ${isAtTop ? 'text-white' : 'text-gray-700 dark:text-white'}`} />
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden">
+              <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`p-2 rounded-lg ${isAtTop ? 'text-white' : 'text-gray-700'}`}
+              >
+                <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
+                </svg>
+              </button>
+            </div>
           </div>
-          {isMobileMenuOpen && (
-              <div className="mobile-menu md:hidden">
-                  <ul>
-                      <li><Link href="/" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Home</Link></li>
-                      <li><Link href="watch" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Watches</Link></li>
-                      <li><Link href="purse" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Purses</Link></li>
-                      <li><Link href="merch" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Merch</Link></li>
-                      <li><Link href="/contact-us" className="block text-sm px-4 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300">Contact</Link></li>
-                  
-                  </ul>
-              </div>
-          )}
-      </nav>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`
+          md:hidden 
+          transition-all duration-300 ease-in-out
+          ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
+          overflow-hidden
+        `}>
+          <div className="px-4 py-3 space-y-3 bg-white/95 backdrop-blur-md shadow-lg">
+            <MobileNavLink href="/watch">Timepieces</MobileNavLink>
+            <MobileNavLink href="/purse">Leather Goods</MobileNavLink>
+            <MobileNavLink href="/merch">Accessories</MobileNavLink>
+            <MobileNavLink href="/contact">Contact</MobileNavLink>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 }
+
+const NavLink = ({ href, children }) => (
+  <Link 
+    href={href} 
+    className={`
+      relative 
+      text-sm font-medium 
+      transition-colors duration-300
+      text-white hover:text-gray-300
+      after:content-['']
+      after:absolute
+      after:w-0
+      after:h-[2px]
+      after:bottom-[-4px]
+      after:left-0
+      after:bg-gray-400
+      after:transition-all
+      after:duration-300
+      hover:after:w-full
+      z-50
+    `}
+  >
+    {children}
+  </Link>
+);
+
+const MobileNavLink = ({ href, children }) => (
+  <Link 
+    href={href} 
+    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+  >
+    {children}
+  </Link>
+);
 
