@@ -5,6 +5,7 @@ import "./globals.css";
 import Logo from "./components/Logo";
 import { ThemeProvider } from "./components/ThemeProvider";
 import ChatBot from "./components/ChatBot";
+import { AuthContextProvider } from './context/AuthContext';
 
 
 
@@ -32,7 +33,9 @@ export default function RootLayout({ children }) {
       </Head>
       <body className="transition-colors duration-300 dark:bg-gray-900">
         <ThemeProvider>
-          {children}
+          <AuthContextProvider>
+            {children}
+          </AuthContextProvider>
           <Footer/>
           <ChatBot />
         </ThemeProvider>

@@ -16,23 +16,34 @@ function ProductGallery({ initialCategory = 'All', hideCategoryDropdown = false 
 
     useEffect(() => {
         const fetchProducts = async () => {
-            let q;
-            if (selectedCategory !== 'All') {
-                q = query(collection(db, 'products'), where('category', '==', selectedCategory), orderBy('date', 'desc'));
-            } else {
-                q = query(collection(db, 'products'), orderBy('date', 'desc'));
-            }
-
             try {
+                const colRef = collection(db, 'products');
+                let q;
+                
+                if (selectedCategory !== 'All') {
+                    q = query(
+                        colRef,
+                        where('category', '==', selectedCategory),
+                        orderBy('date', 'desc')
+                    );
+                } else {
+                    q = query(
+                        colRef,
+                        orderBy('date', 'desc')
+                    );
+                }
+
                 const querySnapshot = await getDocs(q);
                 const fetchedProducts = querySnapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
                 setProducts(fetchedProducts);
-                setDisplayProducts(fetchedProducts); // Apply filtering and sorting if needed
+                setDisplayProducts(fetchedProducts);
             } catch (error) {
                 console.error("Error fetching products:", error);
+                setProducts([]);
+                setDisplayProducts([]);
             }
         };
 

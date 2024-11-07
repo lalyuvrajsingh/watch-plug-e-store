@@ -10,22 +10,32 @@ export default function NewlyLaunchedProducts({ category, title }) {
     useEffect(() => {
         const fetchProducts = async () => {
             const colRef = collection(db, 'products');
-            const fifteenDaysAgo = new Date(Date.now() - 15 * 24 * 60 * 60 * 1000);
-
-            let q;
-            if (category) {
-                // Fetch only products by date in the given category that were added in the last 15 days
-                q = query(colRef, where('category', '==', category), where('date', '>=', fifteenDaysAgo), orderBy('date', 'desc'), limit(6));
-            } else {
-                q = query(colRef, where('date', '>=', fifteenDaysAgo), orderBy('date', 'desc'), limit(6));
+            try {
+                let q;
+                if (category) {
+                    q = query(
+                        colRef,
+                        where('category', '==', category),
+                        orderBy('date', 'desc'),
+                        limit(6)
+                    );
+                } else {
+                    q = query(
+                        colRef,
+                        orderBy('date', 'desc'),
+                        limit(6)
+                    );
+                }
+                const querySnapshot = await getDocs(q);
+                const fetchedProducts = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setProducts(fetchedProducts);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+                setProducts([]);
             }
-
-            const querySnapshot = await getDocs(q);
-            const fetchedProducts = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setProducts(fetchedProducts);
         };
 
         fetchProducts();

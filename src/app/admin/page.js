@@ -77,36 +77,50 @@ function AdminDashboard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-
-    const storage = getStorage();
-
-    // Paths in storage
-    // const imageRef = ref(storage, `images/${imageFile.name}`);
-    const coverImageRef = ref(storage, `coverImages/${coverImageFile.name}`);
+    if (!coverImageFile) {
+      alert('Please select a cover image');
+      return;
+    }
 
     try {
-        // Upload image and cover image
-        // const imageSnapshot = await uploadBytes(imageRef, imageFile);
-        const coverImageSnapshot = await uploadBytes(coverImageRef, coverImageFile);
+      const storage = getStorage();
+      const timestamp = Date.now();
+      const fileName = `${timestamp}-${coverImageFile.name}`;
+      const coverImageRef = ref(storage, `coverImages/${fileName}`);
 
-        // Get download URLs
-        // const imageUrl = await getDownloadURL(imageSnapshot.ref);
-        const coverImageUrl = await getDownloadURL(coverImageSnapshot.ref);
+      // Upload without metadata first
+      const coverImageSnapshot = await uploadBytes(coverImageRef, coverImageFile);
+      const coverImageUrl = await getDownloadURL(coverImageSnapshot.ref);
 
-        // Add product data to Firestore
-        await addDoc(collection(db, 'products'), {
-            ...formData,
-            coverImage: coverImageUrl,
-            date: new Date(formData.date)
-        });
+      // Add product data to Firestore
+      await addDoc(collection(db, 'products'), {
+        ...formData,
+        coverImage: coverImageUrl,
+        date: new Date(formData.date),
+        createdAt: new Date()
+      });
 
-        alert('Product added successfully!');
-        // Optionally, clear the form or navigate the user away
+      // Reset form
+      setFormData({
+        category: '',
+        brand: '',
+        date: '',
+        mrp: '',
+        sellingPrice: '',
+        discount: '',
+        featured: false,
+        limitedEdition: false,
+        description: '',
+        coverImage: ''
+      });
+      setCoverImageFile(null);
+      
+      alert('Product added successfully!');
     } catch (error) {
-        console.error('Error adding document:', error);
-        alert('Failed to add product.');
+      console.error('Error adding document:', error);
+      alert(`Failed to add product: ${error.message}`);
     }
-};
+  };
 
 
   return (
