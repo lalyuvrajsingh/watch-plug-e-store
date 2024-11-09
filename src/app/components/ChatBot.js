@@ -5,6 +5,30 @@ import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import { searchProducts } from '../utils/productSearch';
 
+const processMessageContent = (content) => {
+  return content
+    // Format category headers
+    .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-lg font-bold text-gray-800 mt-4 mb-2">$1</h3>')
+    
+    // Format product sections
+    .replace(/(\w+):\s*\n/g, '<div class="mb-4"><h4 class="text-md font-semibold text-gray-700 mb-2">$1</h4>')
+    
+    // Format product listings
+    .replace(/• (.*?)(?=\n|$)/g, '<div class="ml-4 mb-2 flex items-center"><span class="mr-2">•</span><span>$1</span></div>')
+    
+    // Format prices
+    .replace(/\$(\d{1,3}(,\d{3})*(\.\d{2})?)/g, '<span class="font-semibold text-green-700">$$$1</span>')
+    
+    // Format discounts
+    .replace(/(\d+)% OFF/g, '<span class="text-red-600 font-medium">$1% OFF</span>')
+    
+    // Format emphasis
+    .replace(/\*(.*?)\*/g, '<em class="text-gray-600 not-italic">$1</em>')
+    
+    // Add section closings
+    .replace(/(?=<h3|$)/g, '</div>');
+};
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -51,16 +75,19 @@ export default function ChatBot() {
 
       const processedContent = data.response
   // Format category headers
-  .replace(/\*\*(.*?)\*\*/g, '<h3 class="font-bold text-lg mt-3 mb-2">$1</h3>')
-  // Format product bullets
-  .replace(/\* (.*?):/g, '<div class="ml-3 mb-2">• <span class="font-semibold">$1</span>')
-  // Format price and discounts
-  .replace(/\$([\d,]+)/g, '<span class="font-semibold text-black">$$$1</span>')
-  .replace(/\((\d+)% discount available\)/g, 
-    '<span class="text-green-600 ml-1">(Save $1%)</span></div>')
-  // Format final question
-  .replace(/Which of these catches your eye\?/, 
-    '<p class="mt-4 font-medium">Which of these catches your eye?</p>');
+  .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-lg font-bold text-gray-800 mt-4 mb-2">$1</h3>')
+  // Format product sections
+  .replace(/(\w+):\s*\n/g, '<div class="mb-4"><h4 class="text-md font-semibold text-gray-700 mb-2">$1</h4>')
+  // Format product listings
+  .replace(/• (.*?)(?=\n|$)/g, '<div class="ml-4 mb-2 flex items-center"><span class="mr-2">•</span><span>$1</span></div>')
+  // Format prices
+  .replace(/\$(\d{1,3}(,\d{3})*(\.\d{2})?)/g, '<span class="font-semibold text-green-700">$$$1</span>')
+  // Format discounts
+  .replace(/(\d+)% OFF/g, '<span class="text-red-600 font-medium">$1% OFF</span>')
+  // Format emphasis
+  .replace(/\*(.*?)\*/g, '<em class="text-gray-600 not-italic">$1</em>')
+  // Add section closings
+  .replace(/(?=<h3|$)/g, '</div>');
 
       setMessages(prev => [...prev, { 
         role: 'assistant', 
@@ -95,7 +122,6 @@ export default function ChatBot() {
   };
 
   const handleUserMessage = async (message) => {
-    // Basic intent detection
     const watchBrands = ['rolex', 'patek', 'audemars', 'cartier'];
     const isAskingAboutWatch = watchBrands.some(brand => 
       message.toLowerCase().includes(brand)
@@ -105,19 +131,29 @@ export default function ChatBot() {
       const products = await searchProducts(message);
       if (products.length > 0) {
         return {
-          text: `I found these watches that might interest you:`,
+          text: `**Here are some watches that match your interest:**\n\n` +
+               `• Found ${products.length} matching timepieces\n` +
+               `• All watches come with authenticity guarantee\n` +
+               `• Free shipping and insurance included\n\n` +
+               `*Click on any watch below to view details:*`,
           products: products.map(p => ({
             name: `${p.brand} ${p.name}`,
             price: p.sellingPrice,
-            url: p.url
+            url: `/product/${p.id}`
           }))
         };
       }
     }
 
-    // Default response
+    // Default response with formatting
     return {
-      text: "I can help you find specific watches. Please mention the brand or model you're interested in.",
+      text: "**How can I assist you today?**\n\n" +
+            "I can help you with:\n" +
+            "• Finding specific watch models\n" +
+            "• Providing information about luxury brands\n" +
+            "• Checking availability and pricing\n" +
+            "• Scheduling viewings\n\n" +
+            "*Please mention the brand or model you're interested in.*",
       products: []
     };
   };
@@ -149,7 +185,7 @@ export default function ChatBot() {
 
           <div 
             id="message-container"
-            className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth"
+            className="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth"
             onClick={handleMessageClick}
           >
             {messages.map((message, index) => (
@@ -158,15 +194,19 @@ export default function ChatBot() {
                 className={`${
                   message.role === 'user' 
                     ? 'ml-auto bg-black text-white' 
-                    : 'mr-auto bg-gray-200'
-                } rounded-lg p-3 max-w-[80%] transition-all duration-200 ease-in-out`}
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(message.content, {
-                    ALLOWED_TAGS: ['a', 'p', 'br', 'strong', 'em'],
-                    ALLOWED_ATTR: ['href', 'class', 'target'],
-                  })
-                }}
-              />
+                    : 'mr-auto bg-gray-100 border border-gray-200'
+                } rounded-xl p-4 max-w-[85%] shadow-sm hover:shadow-md transition-shadow duration-200`}
+              >
+                <div
+                  className="prose prose-sm max-w-none"
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(message.content, {
+                      ALLOWED_TAGS: ['div', 'span', 'h3', 'h4', 'em', 'p', 'br'],
+                      ALLOWED_ATTR: ['class'],
+                    })
+                  }}
+                />
+              </div>
             ))}
             {isLoading && (
               <div className="mr-auto bg-gray-200 rounded-lg p-3 animate-pulse">

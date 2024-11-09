@@ -12,9 +12,9 @@ export default function BentoGrid() {
               <Image 
                 src="/watch-image/pexels-pratik-prasad-3736245-14778525 copy.jpg" 
                 alt="Luxury Watch" 
-                width={600}
-                height={150}
+                fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute bottom-0 left-0 p-8">
                 <h2 className="text-4xl font-bold text-white mb-2">Luxury Exploration</h2>
@@ -73,8 +73,8 @@ export default function BentoGrid() {
                   <div className="rounded-full w-6 h-6 flex items-center justify-center text-white"></div>
                 </div>
                 <div className="text-2xl pl-8 font-bold mt-2">
-                  <h2 className="text-4xl text-gray-800 italic mb-2">&ldquo;Where precision meets passion&rdquo;</h2>
-                  <p className="pl-5 text-gray-500">Excellence becomes timeless</p>
+                  <h2 className="text-4xl text-gray-800 italic mb-7">Where precision meets passion & excellence becomes timeless</h2>
+                  <p className="pl-5 text-gray-500"></p>
                 </div>
               </div>
             </div>

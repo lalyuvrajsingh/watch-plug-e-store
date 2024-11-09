@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       <Head>
         <link rel="icon" href="/WP logo.jpeg"/>
       </Head>
-      <body className="transition-colors duration-300 dark:bg-gray-900">
+      <body className="transition-colors duration-300 ">
         <ThemeProvider>
           <AuthContextProvider>
             {children}

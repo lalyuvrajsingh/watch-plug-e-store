@@ -7,14 +7,11 @@
   --background-rgb: 255, 255, 255;
 }
 
-.dark {
-  --foreground-rgb: 229, 231, 235;
-  --background-rgb: 0, 0, 0;
-}
+
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+  
+  background: white
 }
 
 .slider {
@@ -132,5 +129,24 @@ html {
       var(--tw-gradient-to) 100%
     );
   }
+}
+
+.prose h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose h4 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.prose div {
+  margin-bottom: 0.5em;
+}
+
+.prose em {
+  color: #4B5563;
+  font-style: normal;
 }
 
