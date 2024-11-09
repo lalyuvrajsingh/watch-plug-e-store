@@ -47,12 +47,12 @@ export default function ProductPage({ params }) {
       </div>
 
       <main className="container mx-auto px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Left Column - Image Gallery */}
-            <div className="sticky top-8 space-y-6">
+            <div className="relative lg:sticky lg:top-8 space-y-4 lg:space-y-6">
               {/* Main Image */}
-              <div className="aspect-square relative overflow-hidden rounded-3xl border shadow-sm p-8">
+              <div className="aspect-square relative overflow-hidden rounded-2xl lg:rounded-3xl border shadow-sm p-4 lg:p-8">
                 <Image
                   src={selectedImage || product.coverImage}
                   alt={product.name}
@@ -64,7 +64,7 @@ export default function ProductPage({ params }) {
               </div>
               
               {/* Thumbnail Gallery */}
-              <div className="grid grid-cols-5 gap-4">
+              <div className="grid grid-cols-4 md:grid-cols-5 gap-2 md:gap-4">
                 <div 
                   onClick={() => setSelectedImage(product.coverImage)}
                   className={`aspect-square relative rounded-lg overflow-hidden cursor-pointer bg-gray-50 p-2 ${
@@ -100,7 +100,7 @@ export default function ProductPage({ params }) {
             </div>
 
             {/* Right Column - Product Info */}
-            <div className="lg:px-6 space-y-8">
+            <div className="space-y-6 lg:space-y-8">
               {/* Product Title and Price */}
               <div className="space-y-4">
                 <div className="space-y-2">

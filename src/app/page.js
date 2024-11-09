@@ -25,20 +25,40 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       {/* Brand Promise Section */}
-      <section className="py-16  bg-black flex text-gray-300 ">
-        <div className="container mx-auto  px-4">
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-8 mb-8 text-center">
-            <div className="p-6 ">
-              <h3 className="text-xl font-semibold mb-3">Authentic Luxury</h3>
-              <p className="">Every piece authenticated by expert specialists</p>
+      <section className="py-16 bg-black text-gray-300">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-row md:flex-col gap-8">
+            {/* Authentic Luxury */}
+            <div className="flex-1 text-center p-4 md:p-6">
+              <h3 className="text-xl md:text-2xl font-semibold mb-3">
+                Authentic Luxury
+              </h3>
+              <p className="text-gray-400 text-sm md:text-base">
+                Every piece authenticated<br className="hidden md:block" /> 
+                by expert specialists
+              </p>
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-3">Curated Collection</h3>
-              <p className="">Handpicked selection</p>
+
+            {/* Curated Collection */}
+            <div className="flex-1 text-center p-4 md:p-6">
+              <h3 className="text-xl md:text-2xl font-semibold mb-3">
+                Curated Collection
+              </h3>
+              <p className="text-gray-400 text-sm md:text-base">
+                Handpicked<br className="hidden md:block" />
+                selection
+              </p>
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-3">Expert Craftsmanship</h3>
-              <p className="">Unparalleled craftsmanship</p>
+
+            {/* Expert Craftsmanship */}
+            <div className="flex-1 text-center p-4 md:p-6">
+              <h3 className="text-xl md:text-2xl font-semibold mb-3">
+                Expert Craftsmanship
+              </h3>
+              <p className="text-gray-400 text-sm md:text-base">
+                Unparalleled<br className="hidden md:block" />
+                craftsmanship
+              </p>
             </div>
           </div>
         </div>

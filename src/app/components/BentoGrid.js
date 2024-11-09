@@ -67,14 +67,16 @@ export default function BentoGrid() {
           <div className="col-span-2">
             {/* Value/Graph Tile */}
             <div className="rounded-3xl overflow-hidden bg-white p-4">
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-fit">
                 <div className="flex justify-between items-center">
                   <span className="font-bold"></span>
                   <div className="rounded-full w-6 h-6 flex items-center justify-center text-white"></div>
                 </div>
-                <div className="text-2xl pl-8 font-bold mt-2">
-                  <h2 className="text-4xl text-gray-800 italic mb-7">Where precision meets passion & excellence becomes timeless</h2>
-                  <p className="pl-5 text-gray-500"></p>
+                <div className="text-sm md:text-md pl-2 md:pl-2 font-bold mt-2">
+                  <h2 className="text-sm md:text-md lg:text-4xl text-gray-800 italic mb-4 md:mb-7">
+                    Where precision meets passion & excellence becomes timeless
+                  </h2>
+                  <p className="lg:pl-2 md:pl-1 text-sm md:text-base text-gray-500"></p>
                 </div>
               </div>
             </div>

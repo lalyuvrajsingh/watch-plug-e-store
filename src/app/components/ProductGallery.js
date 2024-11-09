@@ -83,47 +83,43 @@ function ProductGallery({ initialCategory = 'All', hideCategoryDropdown = false 
 
     return (
         <div className="container w-fit  mx-auto px-1 lg:px-4 py-1 lg:py-6">
-            <div className="flex   justify-between items-center mb-4">
-
-
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                 <input 
                     type="text"
                     placeholder="Search by name or brand..."
-                    className="p-2 w-fit mt-3 rounded-xl border mx-3"
+                    className="p-2 w-full sm:w-fit rounded-xl border"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 
-                <div className='flex flex-col justify-between w-fit'>
-                {!hideCategoryDropdown && (
+                <div className='flex flex-row sm:flex-col justify-between gap-2'>
+                    {!hideCategoryDropdown && (
+                        <select 
+                            className="p-2 text-sm rounded-xl lg:text-md w-full sm:w-auto"
+                            value={selectedCategory}
+                            onChange={(e) => setSelectedCategory(e.target.value)}
+                        >
+                            <option value="All">All</option>
+                            <option value="Watch">Watches</option>
+                            <option value="Purse">Purses</option>
+                            <option value="Merch">Merch</option>
+                        </select>
+                    )}
+
                     <select 
-                        className="mx-2 text-sm  rounded-xl lg:text-md"
-                        value={selectedCategory}
-                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        className="p-2 text-sm rounded-xl lg:text-md w-full sm:w-auto"
+                        value={sortType}
+                        onChange={(e) => setSortType(e.target.value)}
                     >
-                        <option value="All">All</option>
-                        <option value="Watch">Watches</option>
-                        <option value="Purse">Purses</option>
-                        <option value="Merch">Merch</option>
+                        <option value="newest">Newest</option>
+                        <option value="lowToHigh">Low to High</option>
+                        <option value="highToLow">High to Low</option>
                     </select>
-                )}
-
-                
-
-                <select 
-                    className="mx-2 text-sm rounded-xl lg:text-md"
-                    value={sortType}
-                    onChange={(e) => setSortType(e.target.value)}
-                >
-                    <option value="newest" >Newest</option>
-                    <option value="lowToHigh">Low to High</option>
-                    <option value="highToLow">High to Low</option>
-                </select>
                 </div>
             </div>
             <hr className='mb-5'/>
             {displayProducts.length > 0 ? (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {displayProducts.map(product => (
                         <ProductCard key={product.id} product={product} />
                     ))}
