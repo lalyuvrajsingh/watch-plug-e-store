@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const FloatingImage = ({ className, src, alt = "", parallaxSpeed = 0.01 }) => {
@@ -47,6 +46,13 @@ const FloatingImage = ({ className, src, alt = "", parallaxSpeed = 0.01 }) => {
 }
 
 export default function HeroGallery() {
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('featured-products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
       {/* Gradient Overlay */}
@@ -57,12 +63,12 @@ export default function HeroGallery() {
         <h1 className="text-[4.5rem] font-normal leading-tight mb-12 tracking-[-0.02em] text-white/95 md:text-[3.5rem] md:mb-8">
           Timeless Elegance<br />Modern Legacy
         </h1>
-        <Link 
-          href="#"
+        <button 
+          onClick={scrollToProducts}
           className="inline-block px-10 py-4 text-xl font-medium text-black bg-white rounded-full hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-[0_6px_20px_rgba(255,255,255,0.15)] transition-all duration-300 active:translate-y-0 shadow-[0_4px_15px_rgba(255,255,255,0.1)]"
         >
           Explore
-        </Link>
+        </button>
       </div>
 
       {/* Floating Images with different parallax speeds */}
