@@ -1,33 +1,116 @@
 'use client'
-import { useEffect, useState } from 'react';
-import styles from '../globals.css'
 import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useLoading } from '../context/LoadingContext';
 
 const Logo = () => {
-  const [showContent, setShowContent] = useState(true);
-
+  const { isLoading, setIsLoading } = useLoading();
+  const [isMobile, setIsMobile] = useState(false);
+  const text = "FineChrono";
+  
   useEffect(() => {
-    const timer = setTimeout(() => setShowContent(false), 1000); // 3 seconds before fade out
-    return () => clearTimeout(timer);
-  }, []);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    document.body.style.overflow = 'hidden';
+    
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      document.body.style.overflow = 'auto';
+    }, 2500);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, [setIsLoading]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 50,
+      rotateX: -90,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  if (!isLoading) return null;
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
-      <AnimatePresence>
-        {showContent && (
+    <AnimatePresence mode="wait">
+      {isLoading && (
+        <motion.div
+          className="fixed inset-0 flex items-center justify-center bg-black z-[9999]"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <motion.div
-            key="content"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center"
+            key="loader"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="text-center perspective-1000 px-4"
           >
-            <img src="/IMG_2D6D8B9531AC-1.jpeg" alt="Logo" className="h-52" />
+            <motion.div className="flex items-center justify-center space-x-[0.15rem] md:space-x-2">
+              {text.split('').map((letter, index) => (
+                <motion.span
+                  key={index}
+                  variants={letterVariants}
+                  className={`${
+                    isMobile 
+                      ? 'text-4xl md:text-5xl' 
+                      : 'text-6xl md:text-7xl'
+                  } font-bold text-white inline-block transform-gpu`}
+                  style={{ textShadow: '0 0 10px rgba(255,255,255,0.3)' }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </motion.div>
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ 
+                scaleX: 1, 
+                opacity: 1,
+                transition: { delay: 1.5, duration: 0.8 }
+              }}
+              className="h-0.5 bg-white mt-4 md:mt-6 origin-left"
+            />
           </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

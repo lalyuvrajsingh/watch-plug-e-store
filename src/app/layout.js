@@ -6,6 +6,8 @@ import Logo from "./components/Logo";
 import { ThemeProvider } from "./components/ThemeProvider";
 import ChatBot from "./components/ChatBot";
 import { AuthContextProvider } from './context/AuthContext';
+import { LoadingProvider } from './context/LoadingContext';
+import ContentWrapper from './components/ContentWrapper';
 
 
 
@@ -30,14 +32,20 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <Head>
         <link rel="icon" href="/WP logo.jpeg"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       </Head>
-      <body className="transition-colors duration-300 ">
+      <body className="transition-colors duration-300 overflow-x-hidden">
         <ThemeProvider>
-          <AuthContextProvider>
-            {children}
-          </AuthContextProvider>
-          <Footer/>
-          <ChatBot />
+          <LoadingProvider>
+            <AuthContextProvider>
+              <Logo />
+              <ContentWrapper>
+                {children}
+                <Footer/>
+                <ChatBot />
+              </ContentWrapper>
+            </AuthContextProvider>
+          </LoadingProvider>
         </ThemeProvider>
       </body>
     </html>
