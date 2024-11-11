@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../../firebaseConfig';
 import Navbar from '../../components/Navbar';
+import ProductGallery from '../../components/ProductGallery';
 
 export default function ProductPage({ params }) {
   const [product, setProduct] = useState(null);
@@ -172,6 +173,9 @@ export default function ProductPage({ params }) {
           </div>
         </div>
       </main>
+
+      {/* Add the product gallery */}
+      {product && <ProductGallery currentProduct={product} />}
     </div>
   );
 } 

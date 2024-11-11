@@ -4,7 +4,7 @@ import { FaInstagram, FaPhone } from 'react-icons/fa';  // Importing Instagram i
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 mt-4 rounded-t-3xl text-white py-8">
+        <footer className="bg-black mt-4 rounded-t-3xl text-white py-8">
             <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
                 {/* About Section */}
                 <div className="col-span-1 md:col-span-2">
