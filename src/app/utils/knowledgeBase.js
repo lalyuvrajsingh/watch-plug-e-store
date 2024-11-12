@@ -49,13 +49,13 @@ export function generateContext(knowledge, userQuery) {
   }
 
   // Add historical value data
-  if (knowledge.historicalData.length > 0) {
-    context += `**Historical Value Trends**\n`;
-    knowledge.historicalData.forEach(history => {
-      context += `• ${history.year}: $${history.averagePrice.toLocaleString()} (${history.percentageChange > 0 ? '+' : ''}${history.percentageChange}%)\n`;
-    });
-    context += '\n';
-  }
+//   if (knowledge.historicalData.length > 0) {
+//     context += `**Historical Value Trends**\n`;
+//     knowledge.historicalData.forEach(history => {
+//       context += `• ${history.year}: $${history.averagePrice.toLocaleString()} (${history.percentageChange > 0 ? '+' : ''}${history.percentageChange}%)\n`;
+//     });
+//     context += '\n';
+//   }
 
   // Add current product information
   if (knowledge.productInfo.length > 0) {

@@ -2,7 +2,7 @@ export function generateContext(knowledge, userQuery) {
   let context = '';
   
   if (knowledge?.marketData) {
-    const { marketData, historicalData, inventory } = knowledge;
+    const { marketData, inventory } = knowledge;
     
     // Add market analysis
     context += `**Current Market Analysis**\n`;
@@ -11,13 +11,13 @@ export function generateContext(knowledge, userQuery) {
     context += `• Market Demand: ${marketData.demandIndex}\n\n`;
 
     // Add historical performance
-    if (historicalData?.priceHistory) {
-      context += `**Value History**\n`;
-      historicalData.priceHistory.forEach(record => {
-        context += `• ${record.year}: $${record.price.toLocaleString()} (${record.change}%)\n`;
-      });
-      context += '\n';
-    }
+    // if (historicalData?.priceHistory) {
+    //   context += `**Value History**\n`;
+    //   historicalData.priceHistory.forEach(record => {
+    //     context += `• ${record.year}: $${record.price.toLocaleString()} (${record.change}%)\n`;
+    //   });
+    //   context += '\n';
+    // }
 
     // Add our inventory
     if (inventory.length > 0) {
