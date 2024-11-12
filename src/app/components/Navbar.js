@@ -88,16 +88,23 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div className={`
-          md:hidden 
+          lg:hidden 
+          fixed top-[4.5rem] left-0 right-0
           transition-all duration-300 ease-in-out
-          ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
-          overflow-hidden
+          ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}
+          z-40
         `}>
-          <div className="px-4 py-3 space-y-3 bg-white/95 backdrop-blur-md shadow-lg">
+          <div className="mx-4 p-4 space-y-3 bg-black/80 backdrop-blur-sm rounded-2xl border border-gray-500/20">
             <MobileNavLink href="/watch">Timepieces</MobileNavLink>
             <MobileNavLink href="/purse">Leather Goods</MobileNavLink>
             <MobileNavLink href="/merch">Accessories</MobileNavLink>
             <MobileNavLink href="/contact">Contact</MobileNavLink>
+            <div className="flex items-center justify-between pt-3 border-t border-gray-500/20">
+              <ThemeToggle />
+              <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                <FaSearch className="w-5 h-5 text-white" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -133,7 +140,7 @@ const NavLink = ({ href, children }) => (
 const MobileNavLink = ({ href, children }) => (
   <Link 
     href={href} 
-    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+    className="block px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors"
   >
     {children}
   </Link>

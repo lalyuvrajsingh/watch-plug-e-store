@@ -4,6 +4,7 @@ import { FaRobot, FaTimes } from 'react-icons/fa';
 import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import { searchProducts } from '../utils/productSearch';
+import { retrieveWatchInfo, generateContext } from '../utils/knowledgeBase';
 
 const processMessageContent = (content) => {
   return content
@@ -123,20 +124,21 @@ export default function ChatBot() {
 
   const handleUserMessage = async (message) => {
     const watchBrands = ['rolex', 'patek', 'audemars', 'cartier'];
-    const isAskingAboutWatch = watchBrands.some(brand => 
+    const brand = watchBrands.find(brand => 
       message.toLowerCase().includes(brand)
     );
 
-    if (isAskingAboutWatch) {
-      const products = await searchProducts(message);
-      if (products.length > 0) {
+    if (brand) {
+      // Retrieve knowledge
+      const knowledge = await retrieveWatchInfo({ brand });
+      const context = generateContext(knowledge, message);
+
+      // Generate response using context
+      if (knowledge.productInfo.length > 0) {
         return {
-          text: `**Here are some watches that match your interest:**\n\n` +
-               `• Found ${products.length} matching timepieces\n` +
-               `• All watches come with authenticity guarantee\n` +
-               `• Free shipping and insurance included\n\n` +
+          text: `**Based on our current inventory:**\n\n${context}\n\n` +
                `*Click on any watch below to view details:*`,
-          products: products.map(p => ({
+          products: knowledge.productInfo.map(p => ({
             name: `${p.brand} ${p.name}`,
             price: p.sellingPrice,
             url: `/product/${p.id}`
@@ -145,7 +147,7 @@ export default function ChatBot() {
       }
     }
 
-    // Default response with formatting
+    // Default response remains the same
     return {
       text: "**How can I assist you today?**\n\n" +
             "I can help you with:\n" +
