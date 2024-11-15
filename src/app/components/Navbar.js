@@ -59,8 +59,8 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               <NavLink href="/watch">Timepieces</NavLink>
-              <NavLink href="/purse">Leather Goods</NavLink>
-              <NavLink href="/merch">Accessories</NavLink>
+              <NavLink href="/purse">Bags</NavLink>
+              <NavLink href="/merch">Merch</NavLink>
               <NavLink href="/contact">Contact</NavLink>
             </div>
 
@@ -96,8 +96,8 @@ export default function Navbar() {
         `}>
           <div className="mx-4 p-4 space-y-3 bg-black/80 backdrop-blur-sm rounded-2xl border border-gray-500/20">
             <MobileNavLink href="/watch">Timepieces</MobileNavLink>
-            <MobileNavLink href="/purse">Leather Goods</MobileNavLink>
-            <MobileNavLink href="/merch">Accessories</MobileNavLink>
+            <MobileNavLink href="/purse">Bags</MobileNavLink>
+            <MobileNavLink href="/merch">Merch</MobileNavLink>
             <MobileNavLink href="/contact">Contact</MobileNavLink>
             <div className="flex items-center justify-between pt-3 border-t border-gray-500/20">
               <ThemeToggle />
