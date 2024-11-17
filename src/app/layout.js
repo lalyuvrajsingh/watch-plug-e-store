@@ -6,7 +6,6 @@ import Logo from "./components/Logo";
 import { ThemeProvider } from "./components/ThemeProvider";
 import ChatBot from "./components/ChatBot";
 import { AuthContextProvider } from './context/AuthContext';
-import { LoadingProvider } from './context/LoadingContext';
 import ContentWrapper from './components/ContentWrapper';
 
 
@@ -36,16 +35,11 @@ export default function RootLayout({ children }) {
       </Head>
       <body className="transition-colors duration-300 overflow-x-hidden">
         <ThemeProvider>
-          <LoadingProvider>
-            <AuthContextProvider>
-              <Logo />
-              <ContentWrapper>
-                {children}
-                <Footer/>
-                <ChatBot />
-              </ContentWrapper>
-            </AuthContextProvider>
-          </LoadingProvider>
+          <AuthContextProvider>
+            {children}
+            <Footer/>
+            <ChatBot />
+          </AuthContextProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image';
+import ChatBot from './ChatBot';
 
 export default function BentoGrid() {
   return (
@@ -8,13 +9,12 @@ export default function BentoGrid() {
         <div className="grid grid-cols-3 gap-4">
           {/* Large Feature Tile */}
           <div className="col-span-2 row-span-2 rounded-3xl overflow-hidden bg-[#FFD700]/20">
-            <div className="relative h-[150px]">
+            <div className="relative h-full">
               <Image 
                 src="/watch-image/pexels-pratik-prasad-3736245-14778525 copy.jpg" 
                 alt="Luxury Watch" 
                 fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover h-full"
               />
               <div className="absolute bottom-0 left-0 p-8">
                 <h2 className="text-4xl font-bold text-white mb-2">Luxury Exploration</h2>
@@ -27,11 +27,11 @@ export default function BentoGrid() {
           <div className="space-y-4">
             {/* Logo Tile */}
             <div className="rounded-3xl overflow-hidden bg-indigo-600 h-32 flex items-center justify-center">
-              <h2 className="text-3xl font-bold text-white">FineChrono</h2>
+              <h2 className="text-3xl md:text-xl font-bold text-white">FineChrono</h2>
             </div>
 
             {/* Two Small Tiles in Row */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               {/* Icons Tile */}
               <div className="rounded-3xl overflow-hidden bg-white p-4">
                 <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
@@ -102,7 +102,9 @@ export default function BentoGrid() {
                 <h3 className="text-xl font-bold mb-2">AI Generates Your Collection</h3>
                 <div className="w-24 h-6 bg-black/10 rounded-full"></div>
               </div>
-              <div className="w-24 h-24 bg-gray-200 rounded-tr-2xl rounded-bl-2xl"></div>
+              <div className="w-24 h-24 bg-gray-200 rounded-tr-2xl rounded-bl-2xl flex items-center justify-center">
+                <ChatBot />
+              </div>
             </div>
           </div>
         </div>

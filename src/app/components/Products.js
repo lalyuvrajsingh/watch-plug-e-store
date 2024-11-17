@@ -6,7 +6,6 @@ import ProductCard from './ProductCard';
 
 export default function Products({ category }) {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -34,18 +33,14 @@ export default function Products({ category }) {
         setProducts(fetchedProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchProducts();
   }, [category]);
 
-  if (loading) return <div>Loading...</div>;
-
   return (
-    <div className="grid grid-cols-1 mx-4 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 px-2 sm:px-4">
       {products.map(product => (
         <ProductCard key={product.id} product={product} />
       ))}

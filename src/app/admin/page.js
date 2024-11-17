@@ -45,7 +45,6 @@ function AdminDashboard() {
     date: '',
     mrp: '',
     sellingPrice: '',
-    discount: '',
     featured: false,
     limitedEdition: false,
     description: '',
@@ -107,7 +106,6 @@ function AdminDashboard() {
         date: '',
         mrp: '',
         sellingPrice: '',
-        discount: '',
         featured: false,
         limitedEdition: false,
         description: '',
@@ -150,7 +148,6 @@ function AdminDashboard() {
         <input type="date" name="date" value={formData.date} onChange={handleChange} className="input border m-2 p-1 rounded-xl" />
         {/* <input type="number" name="mrp" value={formData.mrp} onChange={handleChange} placeholder="MRP in $" className="input border m-2 p-1 rounded-xl" /> */}
         <input type="number" name="sellingPrice" value={formData.sellingPrice} onChange={handleChange} placeholder="Selling Price in $" className="input border m-2 p-1 rounded-xl" />
-        <input type="number" name="discount" value={formData.discount} onChange={handleChange} placeholder="Discount" className="input border m-2 p-1 rounded-xl" />
         <label>
           <input type="checkbox" name="featured" checked={formData.featured} onChange={handleChange} /> Featured
         </label>
