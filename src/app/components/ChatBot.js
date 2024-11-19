@@ -27,7 +27,19 @@ const processMessageContent = (content) => {
     .replace(/\*(.*?)\*/g, '<em class="text-gray-600 not-italic">$1</em>')
     
     // Add section closings
-    .replace(/(?=<h3|$)/g, '</div>');
+    .replace(/(?=<h3|$)/g, '</div>')
+    
+    // Format specifications
+    .replace(/Specifications:([\s\S]*?)(?=\n\n|$)/g, 
+      '<div class="bg-gray-50 p-3 rounded-lg my-2"><h4 class="font-bold mb-2">Specifications:</h4>$1</div>')
+    
+    // Format market data
+    .replace(/Market Value:([\s\S]*?)(?=\n\n|$)/g,
+      '<div class="bg-blue-50 p-3 rounded-lg my-2"><h4 class="font-bold mb-2">Market Value:</h4>$1</div>')
+    
+    // Format investment insights
+    .replace(/Investment Potential:([\s\S]*?)(?=\n\n|$)/g,
+      '<div class="bg-green-50 p-3 rounded-lg my-2"><h4 class="font-bold mb-2">Investment Potential:</h4>$1</div>');
 };
 
 export default function ChatBot() {
@@ -88,7 +100,16 @@ export default function ChatBot() {
   // Format emphasis
   .replace(/\*(.*?)\*/g, '<em class="text-gray-600 not-italic">$1</em>')
   // Add section closings
-  .replace(/(?=<h3|$)/g, '</div>');
+  .replace(/(?=<h3|$)/g, '</div>')
+  // Format specifications
+  .replace(/Specifications:([\s\S]*?)(?=\n\n|$)/g, 
+    '<div class="bg-gray-50 p-3 rounded-lg my-2"><h4 class="font-bold mb-2">Specifications:</h4>$1</div>')
+  // Format market data
+  .replace(/Market Value:([\s\S]*?)(?=\n\n|$)/g,
+    '<div class="bg-blue-50 p-3 rounded-lg my-2"><h4 class="font-bold mb-2">Market Value:</h4>$1</div>')
+  // Format investment insights
+  .replace(/Investment Potential:([\s\S]*?)(?=\n\n|$)/g,
+    '<div class="bg-green-50 p-3 rounded-lg my-2"><h4 class="font-bold mb-2">Investment Potential:</h4>$1</div>');
 
       setMessages(prev => [...prev, { 
         role: 'assistant', 

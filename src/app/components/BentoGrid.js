@@ -26,9 +26,7 @@ export default function BentoGrid() {
           {/* Right Column */}
           <div className="space-y-4">
             {/* Logo Tile */}
-            <div className="rounded-3xl overflow-hidden bg-indigo-600 h-32 flex items-center justify-center">
-              <h2 className="text-3xl md:text-xl font-bold text-white">FineChrono</h2>
-            </div>
+            <LogoTile />
 
             {/* Two Small Tiles in Row */}
             <div className="grid grid-cols-1 gap-4">
@@ -110,5 +108,20 @@ export default function BentoGrid() {
         </div>
       </div>
     </section>
+  );
+}
+
+export function LogoTile() {
+  return (
+    <div className="rounded-3xl overflow-hidden bg-black border border-gray-500 flex items-center justify-center">
+      <Image
+        src="/logo/image_123650291.JPG"
+        alt="FineChrono Logo"
+        width={100}
+        height={40}
+        className="object-contain"
+        priority
+      />
+    </div>
   );
 } 

@@ -11,7 +11,8 @@
 
 body {
   
-  background: white
+  background: white;
+  overflow-x: hidden;
 }
 
 .slider {
@@ -180,5 +181,15 @@ html, body {
 .transform-gpu {
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+.container {
+  max-width: 100%;
+}
+
+img, video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 

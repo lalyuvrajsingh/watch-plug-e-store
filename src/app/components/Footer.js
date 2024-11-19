@@ -30,9 +30,9 @@ const Footer = () => {
                     <div>
                         <h5 className="text-lg font-bold mb-4">Contact</h5>
                         <ul className="space-y-2">
-                            <li className="flex items-center text-gray-400">
+                            {/* <li className="flex items-center text-gray-400">
                                 <FaPhone className="mr-2" /> +1 (714) 930-4044
-                            </li>
+                            </li> */}
                             <li>
                                 <a 
                                     href="https://www.instagram.com/finechrono/" 

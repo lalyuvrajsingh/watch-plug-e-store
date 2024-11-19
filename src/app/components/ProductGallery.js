@@ -82,8 +82,8 @@ function ProductGallery({ initialCategory = 'All', hideCategoryDropdown = false 
   }
 
     return (
-        <div className="container w-fit  mx-auto px-1 lg:px-4 py-1 lg:py-6">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+        <div className="container w-fit   mx-auto px-1 lg:px-4 py-1 lg:py-6">
+            <div className="flex mt-[85px] flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                 <input 
                     type="text"
                     placeholder="Search by name or brand..."

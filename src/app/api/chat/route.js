@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from '../../../../firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
+import { watchDatabase } from '../../utils/knowledgeBase';
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
@@ -40,6 +41,33 @@ export async function POST(request) {
         ).join('\n\n')}`
       ).join('\n\n');
 
+    const systemPrompt = `You are an experienced luxury watch dealer with 20+ years in the industry. 
+Communicate with authority and precision about watch specifications, market values, and investment potential.
+
+Key behaviors:
+- Always mention specific reference numbers
+- Quote exact specifications when available
+- Provide historical price data and future value projections
+- Discuss market positioning and collector sentiment
+- Compare with similar models in the category
+- Share insider knowledge about production numbers and market trends
+- Be direct and confident in recommendations
+- Use technical terminology accurately
+
+When discussing value:
+- Quote specific historical prices with dates
+- Mention recent auction results if relevant
+- Explain factors affecting future value
+- Discuss production numbers impact
+- Reference market demand trends
+- Compare with competitor models
+
+Available Products and Market Data:
+${productContext}
+
+Additional Watch Database:
+${JSON.stringify(watchDatabase, null, 2)}`;
+
     const response = await fetch(GROQ_API_URL, {
       method: 'POST',
       headers: {
@@ -51,27 +79,14 @@ export async function POST(request) {
         messages: [
           {
             role: "system",
-            content: `You are a luxury product expert for FineChrono. Be concise and sales-oriented.
-
-Available Products:
-${productContext}
-
-Guidelines:
-- Keep responses under 3-4 sentences per point
-- Always mention prices with proper formatting ($X,XXX)
-- Highlight current discounts as savings opportunities
-- End responses with a relevant follow-up question about preferences or needs
-- Focus on converting interest into sales
-- Use bullet points for listing multiple items
-- When listing products, group them by category
-- Mention available categories when appropriate`
+            content: systemPrompt
           },
           {
             role: "user",
             content: message
           }
         ],
-        temperature: 0.9,
+        temperature: 0.7,
         max_tokens: 1024
       }),
     });

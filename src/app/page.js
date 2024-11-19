@@ -91,7 +91,7 @@ export default function Home() {
       {/* Latest Arrivals */}
       <CategorySlide category="Watch" title="Latest Watches"/>
 
-      <section className="py-20 bg-black text-white">
+      <section className="py-10 bg-black text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-8">Connect With Us</h2>
           <p className="text-xl mb-8">Follow us on Instagram for exclusive updates</p>
@@ -106,9 +106,9 @@ export default function Home() {
       </section>
       
       {/* Featured Products */}
-      <section id="featured-products" className="py-20">
+      <section id="featured-products" className="py-10">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">Featured Products</h2>
+          <h2 className="text-4xl font-bold text-center">Featured Products</h2>
           <ProductGallery />
         </div>
       </section>
